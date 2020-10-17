@@ -5,24 +5,53 @@
 The project uses a virtual environment to isolate package dependencies. To create the virtual environment and install required packages, run the following from a bash shell terminal:
 
 ### On macOS and Linux
+
 ```bash
 $ source setup.sh
 ```
+
 ### On Windows (Using PowerShell)
+
 ```powershell
 $ .\setup.ps1
 ```
+
 ### On Windows (Using Git Bash)
+
 ```bash
 $ source setup.sh --windows
 ```
 
 Once the setup script has completed and all packages have been installed, start the Flask app by running:
+
 ```bash
 $ flask run
 ```
 
+### Initial Setup for Checklist Appplication
+
+1. Add a file name Keys.py to the project andd then add the following lines to the new file:
+
+TrelloApiKey = YOURTRELLOAPIKEY
+TrelloServerToken = YOURTRELLOSERVERTOKEN
+
+Removing the default values and adding your own keys.
+
+2. Add Keys.py to the .gitignore file
+
+3. Add the following data values to the ApiAccess.py file:
+
+TODOLISTURL = YOUROWNVALUES
+DONELISTURL = YOUROWNVALUES
+CARDSURL = YOUROWNVALUES
+LISTURL = YOUROWNVALUES
+TODOLISTID = YOUROWNVALUES
+DONELISTID = YOUROWNVALUES
+
+#####
+
 You should see output similar to the following:
+
 ```bash
  * Serving Flask app "app" (lazy loading)
  * Environment: development
@@ -32,11 +61,13 @@ You should see output similar to the following:
  * Debugger is active!
  * Debugger PIN: 226-556-590
 ```
+
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
 
 ### Notes
 
 The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like developement mode (which also enables features like hot reloading when you make a file change).
-* There's also a [SECRET_KEY](https://flask.palletsprojects.com/en/1.1.x/config/#SECRET_KEY) variable which is used to encrypt the flask session cookie.
+
+- There's also a [SECRET_KEY](https://flask.palletsprojects.com/en/1.1.x/config/#SECRET_KEY) variable which is used to encrypt the flask session cookie.
 
 When running `setup.sh`, the `.env.template` file will be copied to `.env` if the latter does not exist.
