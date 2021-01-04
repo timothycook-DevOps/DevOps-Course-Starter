@@ -49,8 +49,9 @@ Vagrant.configure("2") do |config|
     trigger.run_remote = {privileged: false, inline: "
     # Install dependencies and launch
     cd /vagrant
+    export FLASK_ENV=production
     poetry install
-    poetry run flask run --host=0.0.0.0
+    poetry run flask run --host 0.0.0.0
 "}
 end
 
