@@ -118,3 +118,6 @@ env/
 
 ### Keys file
 keys.py
+
+### vagrant dir
+.vagrant
