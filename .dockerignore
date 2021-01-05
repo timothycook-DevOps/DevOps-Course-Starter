@@ -1,0 +1,13 @@
+
+
+### Keys file
+# keys.py
+
+### vagrant dir
+.vagrant
+
+## Extras to ignore
+Vagrantfile
+setup.ps1
+setup.sh
+requirements.txt
