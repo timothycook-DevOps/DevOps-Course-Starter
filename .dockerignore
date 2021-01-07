@@ -9,5 +9,5 @@
 ## Extras to ignore
 Vagrantfile
 setup.ps1
-setup.sh
-requirements.txt
+# setup.sh
+# requirements.txt

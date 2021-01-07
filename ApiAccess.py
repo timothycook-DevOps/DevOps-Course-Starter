@@ -1,4 +1,4 @@
-import requests
+import requests, os
 from Keys import TrelloApiKey, TrelloServerToken
 
 TODOLISTURL = 'https://api.trello.com/1/lists/5f6f787bf9461c809f224d0d/cards/'
@@ -8,6 +8,8 @@ LISTURL = 'https://api.trello.com/1/lists/'
 TODOLISTID = '5f6f787bf9461c809f224d0d'
 DONELISTID = '5f6f7883333c1880d598e148'
 
+TRELLO_API_KEY = os.environ.get('TRELLO_API_KEY')
+TRELLO_SERVER_TOKEN = os.environ.get('TRELLO_SERVER_TOKEN')
 
 class AccessTrelloApi:
 

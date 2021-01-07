@@ -33,13 +33,16 @@ RUN pyenv global 3.9.0
 RUN pip install poetry gunicorn flask
 RUN poetry install
 
+# Set environment to run
+# RUN export FLASK_ENV=production
+
 EXPOSE 5000
 
-ENTRYPOINT [ "bash" ]
+# Add the directory containing poetry to the path environmental variables
+ENV PATH=/root/.pyenv/shims:$PATH
 
-# CMD [ "pyenv",  "install 3.9.0"]
-# CMD [ "pyenv",  "global 3.9.0"]
+# ENTRYPOINT [ "bash" ]
+ENTRYPOINT [ "poetry" ]
 
-
-
-
+# Run gunicorn
+CMD [ "run", "gunicorn", "--bind", "0.0.0.0:5000", "wsgi:app" ]

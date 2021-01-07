@@ -51,7 +51,7 @@ Vagrant.configure("2") do |config|
     cd /vagrant
     export FLASK_ENV=production
     poetry install
-    poetry run flask run --host 0.0.0.0
+    poetry run flask run -h 0.0.0.0 -p 5000
 "}
 end
 
