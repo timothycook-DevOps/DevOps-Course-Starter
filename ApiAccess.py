@@ -2,10 +2,13 @@ import requests
 from Keys import TrelloApiKey, TrelloServerToken
 
 TODOLISTURL = 'https://api.trello.com/1/lists/5f6f787bf9461c809f224d0d/cards/'
+DOINGLISTURL = 'https://api.trello.com/1/lists/5fa80ea247eeb75b38c7259e/cards/'
 DONELISTURL = 'https://api.trello.com/1/lists/5f6f7883333c1880d598e148/cards/'
+
 CARDSURL = 'https://api.trello.com/1/cards/'
 LISTURL = 'https://api.trello.com/1/lists/'
 TODOLISTID = '5f6f787bf9461c809f224d0d'
+DOINGLISTID = '5fa80ea247eeb75b38c7259e'
 DONELISTID = '5f6f7883333c1880d598e148'
 
 
@@ -49,3 +52,6 @@ class AccessTrelloApi:
         payload = {'key': TrelloApiKey,
                    'token': TrelloServerToken, 'idList': DONELISTID}
         requests.put(ApiValue, params=payload)
+
+
+# class ViewModel:

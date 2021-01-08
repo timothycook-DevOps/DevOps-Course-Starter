@@ -1,12 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for
 import ApiAccess as api
-
+import View_Model as model
 
 app = Flask(__name__)
 app.config.from_object('flask_config.Config')
 
-obj1 = api.AccessTrelloApi()
 
+obj1 = api.AccessTrelloApi()
+"""
 
 def get_items():
 
@@ -17,24 +18,29 @@ def get_items():
         api.DONELISTURL, 'Done')
 
     return Items1 + Items2
+"""
+obj2 = model.ViewModel()
 
 
 @app.route('/')
 def index():
-    return render_template('index.html', items=get_items())
+    obj2.add_items()
+    return render_template('index.html', items=obj2.get_items())
 
 
 @app.route('/add_item/', methods=['POST'])
 def add_item():
     NewItem = request.form["NewItem"]
     obj1.AddItemTodoList(NewItem)
-    return render_template('index.html', items=get_items())
+    obj2.add_items()
+    return render_template('index.html', items=obj2.get_items())
 
 
 @app.route('/complete_item/<item>', methods=['GET'])
 def complete_item(item):
     obj1.MarkItemAsDone(item)
-    return render_template('index.html', items=get_items())
+    obj2.add_items()
+    return render_template('index.html', items=obj2.get_items())
 
 
 if __name__ == '__main__':
