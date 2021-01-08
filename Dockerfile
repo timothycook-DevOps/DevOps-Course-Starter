@@ -23,7 +23,7 @@ RUN  echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
 RUN  echo 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bashrc
 
 # Refresh shell for PATH changes to take effect
-SHELL ["bash", "-lc"]
+SHELL [ "bash", "-lc" ]
 
 # Install new python version and set as default
 RUN pyenv install 3.9.0
@@ -33,15 +33,13 @@ RUN pyenv global 3.9.0
 RUN pip install poetry gunicorn flask
 RUN poetry install
 
-# Set environment to run
-# RUN export FLASK_ENV=production
-
+# Expose port 5000
 EXPOSE 5000
 
 # Add the directory containing poetry to the path environmental variables
 ENV PATH=/root/.pyenv/shims:$PATH
 
-# ENTRYPOINT [ "bash" ]
+# Define ENTRYPOINT 
 ENTRYPOINT [ "poetry" ]
 
 # Run gunicorn

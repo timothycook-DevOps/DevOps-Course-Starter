@@ -1,5 +1,5 @@
 import requests, os
-from Keys import TrelloApiKey, TrelloServerToken
+# from Keys import TrelloApiKey, TrelloServerToken
 
 TODOLISTURL = 'https://api.trello.com/1/lists/5f6f787bf9461c809f224d0d/cards/'
 DONELISTURL = 'https://api.trello.com/1/lists/5f6f7883333c1880d598e148/cards/'
@@ -19,8 +19,8 @@ class AccessTrelloApi:
 
     def getCardsFromTrelloList(self, ListURL, ListName):
         ApiValue = ListURL
-        payload = {'key': TrelloApiKey,
-                   'token': TrelloServerToken}
+        payload = {'key': TRELLO_API_KEY,
+                   'token': TRELLO_SERVER_TOKEN}
         jsondata = requests.get(ApiValue, params=payload).json()
         ReturnList = []
         ListDataDict = {}
@@ -38,8 +38,8 @@ class AccessTrelloApi:
 
     def AddItemTodoList(self, name_of_item):
         ApiValue = CARDSURL
-        payload = {'key': TrelloApiKey,
-                   'token': TrelloServerToken, 'idList': TODOLISTID, 'name': name_of_item}
+        payload = {'key': TRELLO_API_KEY,
+                   'token': TRELLO_SERVER_TOKEN, 'idList': TODOLISTID, 'name': name_of_item}
         requests.post(ApiValue, params=payload)
 
     """
@@ -48,6 +48,6 @@ class AccessTrelloApi:
 
     def MarkItemAsDone(self, ItemID):
         ApiValue = CARDSURL + ItemID
-        payload = {'key': TrelloApiKey,
-                   'token': TrelloServerToken, 'idList': DONELISTID}
+        payload = {'key': TRELLO_API_KEY,
+                   'token': TRELLO_SERVER_TOKEN, 'idList': DONELISTID}
         requests.put(ApiValue, params=payload)

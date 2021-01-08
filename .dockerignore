@@ -1,13 +1,16 @@
+# Keys file
+keys.py
 
-
-### Keys file
-# keys.py
-
-### vagrant dir
-.vagrant
-
-## Extras to ignore
+# Items to ignore
 Vagrantfile
 setup.ps1
-# setup.sh
-# requirements.txt
+setup.sh
+requirements.txt
+.gitignore
+.vscode
+__pycache__
+
+# Env things to remove
+.env
+.env.template
+env
