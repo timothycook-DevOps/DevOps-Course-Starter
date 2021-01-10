@@ -118,3 +118,9 @@ env/
 
 ### Keys file
 keys.py
+
+### vagrant dir
+.vagrant
+
+# docker config
+.dockEnv

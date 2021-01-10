@@ -1,0 +1,19 @@
+# Keys file
+keys.py
+
+# Items to ignore
+Vagrantfile
+setup.ps1
+setup.sh
+requirements.txt
+.gitignore
+.vscode
+__pycache__
+
+# Env things to remove
+.env
+.env.template
+env
+
+# docker config
+.dockEnv
