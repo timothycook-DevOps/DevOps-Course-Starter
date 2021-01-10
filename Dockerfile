@@ -1,11 +1,10 @@
-FROM python:3.9-buster
+FROM python:3.9-buster as base
 
 # update os
 RUN apt-get update
 
-# set working directory and copy in files 
+# set working directory
 WORKDIR /todo-app
-COPY . /todo-app
 
 # Pyenv dependancies
 RUN apt-get install -y build-essential libssl-dev zlib1g-dev libbz2-dev \
@@ -29,8 +28,11 @@ SHELL [ "bash", "-lc" ]
 RUN pyenv install 3.9.0
 RUN pyenv global 3.9.0
 
-# Install poetry and Gunicorn and project dependancies
-RUN pip install poetry gunicorn flask
+# Copy over files
+COPY . /todo-app
+
+# Install poetry and Flask and project dependancies
+RUN pip install poetry flask
 RUN poetry install
 
 # Expose port 5000
@@ -42,5 +44,20 @@ ENV PATH=/root/.pyenv/shims:$PATH
 # Define ENTRYPOINT 
 ENTRYPOINT [ "poetry" ]
 
-# Run gunicorn
+# Production environment
+FROM base as production
+
+# Install Gunicorn
+RUN pip install gunicorn
+
+# Run gunicorn for production
 CMD [ "run", "gunicorn", "--bind", "0.0.0.0:5000", "wsgi:app" ]
+
+# Development environment
+FROM base as development
+
+# Enable debugging for dev environment
+ENV FLASK_ENV=development
+
+# Run flask for development
+CMD [ "run", "flask", "run", "-h", "0.0.0.0", "-p", "5000" ]
