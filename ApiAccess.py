@@ -11,6 +11,8 @@ TODOLISTID = '5f6f787bf9461c809f224d0d'
 DOINGLISTID = '5fa80ea247eeb75b38c7259e'
 DONELISTID = '5f6f7883333c1880d598e148'
 
+# PAYLOAD = {'key': TrelloApiKey,'token': TrelloServerToken}
+
 
 class AccessTrelloApi:
 
@@ -29,6 +31,7 @@ class AccessTrelloApi:
             ListDataDict['id'] = item['id']
             ListDataDict['name'] = item['name']
             ListDataDict['status'] = ListName
+            ListDataDict['date'] = item['dateLastActivity'][0:10]
             CopyOfListDataDict = ListDataDict.copy()
             ReturnList.append(CopyOfListDataDict)
         return ReturnList
@@ -53,5 +56,12 @@ class AccessTrelloApi:
                    'token': TrelloServerToken, 'idList': DONELISTID}
         requests.put(ApiValue, params=payload)
 
+    """
+        Takes item id and adds to the doing list
+    """
 
-# class ViewModel:
+    def MarkItemAsDoing(self, ItemID):
+        ApiValue = CARDSURL + ItemID
+        payload = {'key': TrelloApiKey,
+                   'token': TrelloServerToken, 'idList': DOINGLISTID}
+        requests.put(ApiValue, params=payload)

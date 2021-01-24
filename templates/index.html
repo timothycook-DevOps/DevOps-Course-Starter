@@ -14,23 +14,43 @@
       <input type="text" name="NewItem" id="textbox" value=""></input>
       <input type="submit" value="Add Item"></input>
 
-  </form>
+    </form>
+  <hr/>
 
   
 
   <div class="row">
     <div class="col-md-12">
-      <h2>Items</h2>
+      <h2>To-do Items</h2>
+    <hr/>
       <table class="table table-striped">
         <tr>
-          <th>Task ID</th>
           <th>Name</th>
           <th>Status</th>
           <th>Action</th>
         </tr>
-          {% for item in items %}
+          {% for item in object_items.get_todo_items %}
         <tr>
-          <td> {{ item['id']}} </td>
+          <td hidden="true"> {{ item['id']}} </td>
+          <td> {{ item['name'] }} </td>
+          <td> {{ item['status'] }}</td>
+          <td><div class="Form"><form action="/start_item/{{item['id']}}" method="GET"><input type="submit" value="Start"></input></form></tr>
+        </tr>  
+          {% endfor %}
+        </tr>
+      </table>
+      <hr/>
+      <h2>Doing Items</h2>
+      <hr/>
+      <table class="table table-striped">
+        <tr>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+          {% for item in object_items.get_doing_items %}
+        <tr>
+          <td hidden="true"> {{ item['id']}} </td>
           <td> {{ item['name'] }} </td>
           <td> {{ item['status'] }}</td>
           <td><div class="Form"><form action="/complete_item/{{item['id']}}" method="GET"><input type="submit" value="Complete"></input></form></tr>
@@ -38,6 +58,60 @@
           {% endfor %}
         </tr>
       </table>
+      <hr/>
+      <h2>Done Items</h2>
+      <!-- <hr/>
+      <form action="/show_all/" method="GET">
+
+        <input type="submit" value="Show All"></input>
+  
+      </form>
+
+      -->
+      <hr/>
+      
+      <table class="table table-striped">
+        
+        <tr>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Completion Date</th>
+        </tr>
+          {% for item in object_items.recent_done_items %}
+        <tr>
+          <td hidden="true"> {{ item['id']}} </td>
+          <td> {{ item['name'] }} </td>
+          <td> {{ item['status'] }}</td>
+          <td> {{ item['date'] }}</tr>
+        </tr>  
+          {% endfor %}
+        </tr>
+      </table>
+
+      <details>
+        <summary>Show all completed tasks</summary>
+        <table class="table table-striped">
+          <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Completion Date</th>
+          </tr>
+        </tr>
+        {% for item in object_items.older_done_items %}
+      <tr>
+        <td hidden="true"> {{ item['id']}} </td>
+        <td> {{ item['name'] }} </td>
+        <td> {{ item['status'] }}</td>
+        <td> {{ item['date'] }}</tr>
+      </tr>  
+        {% endfor %}
+      </tr>
+
+
+        </table>
+      </details>
+      <hr />
+
     </div>
   </div>
 
