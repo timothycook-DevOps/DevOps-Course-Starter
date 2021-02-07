@@ -1,5 +1,5 @@
 import requests
-from Keys import TrelloApiKey, TrelloServerToken
+import os
 
 TODOLISTURL = 'https://api.trello.com/1/lists/5f6f787bf9461c809f224d0d/cards/'
 DOINGLISTURL = 'https://api.trello.com/1/lists/5fa80ea247eeb75b38c7259e/cards/'
@@ -11,20 +11,30 @@ TODOLISTID = '5f6f787bf9461c809f224d0d'
 DOINGLISTID = '5fa80ea247eeb75b38c7259e'
 DONELISTID = '5f6f7883333c1880d598e148'
 
-# PAYLOAD = {'key': TrelloApiKey,'token': TrelloServerToken}
+TrelloApiKey = os.environ.get('TRELLOAPIKEY')
+TrelloServerToken = os.environ.get('TRELLOSERVERTOKEN')
 
 
 class AccessTrelloApi:
 
     """
+        Method used to handle Trello get requests.
+    """
+
+    def get_json_data(self, InputValue, payload):
+        api_jsondata = requests.get(InputValue, params=payload).json()
+        return api_jsondata
+
+    """
         Returns cards from Trello based on the list name.
+
     """
 
     def getCardsFromTrelloList(self, ListURL, ListName):
         ApiValue = ListURL
         payload = {'key': TrelloApiKey,
                    'token': TrelloServerToken}
-        jsondata = requests.get(ApiValue, params=payload).json()
+        jsondata = self.get_json_data(ApiValue, payload)
         ReturnList = []
         ListDataDict = {}
         for item in jsondata:

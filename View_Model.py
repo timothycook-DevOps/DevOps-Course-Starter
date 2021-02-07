@@ -64,16 +64,3 @@ class ViewModel:
 
     def start_item(self, itemName):
         self.apiInterface.MarkItemAsDoing(itemName)
-
-
-"""
-    def seperate_done_items(self):
-        self._recent_done_items.clear()
-        self._older_done_items.clear()
-        today = datetime.today().strftime('%Y-%m-%d')
-        for item in self._doneItems:
-            if item['date'] == today:
-                self._recent_done_items.append(item)
-            else:
-                self._older_done_items.append(item)
-"""

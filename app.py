@@ -1,11 +1,18 @@
+from _pytest.assertion import pytest_assertrepr_compare
 from flask import Flask, render_template, request, redirect, url_for
 import ApiAccess as api
 import View_Model as model
 
-app = Flask(__name__)
-app.config.from_object('flask_config.Config')
 
-obj2 = model.ViewModel()
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object('flask_config.Config')
+    global obj2
+    obj2 = model.ViewModel()
+    return app
+
+
+app = create_app()
 
 
 @app.route('/')
@@ -44,4 +51,4 @@ def show_all():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

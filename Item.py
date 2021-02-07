@@ -1,5 +1,4 @@
 import requests
-from Keys import TrelloApiKey, TrelloServerToken
 import ApiAccess as api
 
 
