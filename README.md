@@ -30,25 +30,28 @@ $ flask run
 
 ### Initial Setup for Checklist Appplication
 
-1. Add a file name Keys.py to the project andd then add the following lines to the new file:
+Add the following to the .env file.
 
-TrelloApiKey = YOURTRELLOAPIKEY
-TrelloServerToken = YOURTRELLOSERVERTOKEN
+Add your Trello api details.
 
-Removing the default values and adding your own keys.
+1. TRELLOAPIKEY = 'yourAPIkey'
+2. TRELLOSERVERTOKEN = 'yourAPIkey'
 
-2. Add Keys.py to the .gitignore file
+Add the following values to the ApiAccess.py folder.
 
-3. Add the following data values to the ApiAccess.py file:
+TODOLISTURL = 'https://api.trello.com/1/lists/YOURTODOLISTID/cards/'
+DOINGLISTURL = 'https://api.trello.com/1/lists/YOURDOINGLISTID/cards/'
+DONELISTURL = 'https://api.trello.com/1/lists/YOURDONELISTID/cards/'
 
-TODOLISTURL = YOUROWNVALUES
-DONELISTURL = YOUROWNVALUES
-CARDSURL = YOUROWNVALUES
-LISTURL = YOUROWNVALUES
-TODOLISTID = YOUROWNVALUES
-DONELISTID = YOUROWNVALUES
+CARDSURL = 'https://api.trello.com/1/cards/'
+LISTURL = 'https://api.trello.com/1/lists/'
+TODOLISTID = 'YOURTODOLISTID'
+DOINGLISTID = 'YOURDOINGLISTID'
+DONELISTID = 'YOURDONELISTID'
 
-#####
+Replacing the capitalised URL values with your own trello values.
+
+###
 
 You should see output similar to the following:
 
