@@ -39,15 +39,15 @@ Add your Trello api details.
 
 Add the following values to the ApiAccess.py folder.
 
-TODOLISTURL = 'https://api.trello.com/1/lists/YOURTODOLISTID/cards/'
-DOINGLISTURL = 'https://api.trello.com/1/lists/YOURDOINGLISTID/cards/'
-DONELISTURL = 'https://api.trello.com/1/lists/YOURDONELISTID/cards/'
+  TODOLISTURL = 'https://api.trello.com/1/lists/YOURTODOLISTID/cards/'
+  DOINGLISTURL = 'https://api.trello.com/1/lists/YOURDOINGLISTID/cards/'
+  DONELISTURL = 'https://api.trello.com/1/lists/YOURDONELISTID/cards/'
 
-CARDSURL = 'https://api.trello.com/1/cards/'
-LISTURL = 'https://api.trello.com/1/lists/'
-TODOLISTID = 'YOURTODOLISTID'
-DOINGLISTID = 'YOURDOINGLISTID'
-DONELISTID = 'YOURDONELISTID'
+  CARDSURL = 'https://api.trello.com/1/cards/'
+  LISTURL = 'https://api.trello.com/1/lists/'
+  TODOLISTID = 'YOURTODOLISTID'
+  DOINGLISTID = 'YOURDOINGLISTID'
+  DONELISTID = 'YOURDONELISTID'
 
 Replacing the capitalised URL values with your own trello values.
 
