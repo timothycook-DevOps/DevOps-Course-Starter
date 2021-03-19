@@ -116,9 +116,6 @@ env/
 .env
 .WebDriver
 
-### Keys file
-keys.py
-
 ### vagrant dir
 .vagrant
 
