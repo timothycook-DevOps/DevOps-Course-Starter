@@ -1,40 +1,52 @@
 from flask import Flask, render_template, request, redirect, url_for
 import ApiAccess as api
+import View_Model as model
 
 
-app = Flask(__name__)
-app.config.from_object('flask_config.Config')
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object('flask_config.Config')
+    global obj2
+    obj2 = model.ViewModel()
+    return app
 
-obj1 = api.AccessTrelloApi()
 
-
-def get_items():
-
-    Items1 = obj1.getCardsFromTrelloList(
-        api.TODOLISTURL, 'To Do')
-
-    Items2 = obj1.getCardsFromTrelloList(
-        api.DONELISTURL, 'Done')
-
-    return Items1 + Items2
+app = create_app()
 
 
 @app.route('/')
 def index():
-    return render_template('index.html', items=get_items())
+    obj2.add_items()
+    obj2.seperate_done_items()
+    return render_template('index.html', object_items=obj2)
 
 
 @app.route('/add_item/', methods=['POST'])
 def add_item():
     NewItem = request.form["NewItem"]
-    obj1.AddItemTodoList(NewItem)
-    return render_template('index.html', items=get_items())
+    obj2.create_new_item(NewItem)
+    obj2.add_items()
+    return render_template('index.html', object_items=obj2)
+
+
+@app.route('/start_item/<item>', methods=['GET'])
+def start_item(item):
+    obj2.start_item(item)
+    obj2.add_items()
+    return render_template('index.html', object_items=obj2)
 
 
 @app.route('/complete_item/<item>', methods=['GET'])
 def complete_item(item):
-    obj1.MarkItemAsDone(item)
-    return render_template('index.html', items=get_items())
+    obj2.complete_item(item)
+    obj2.add_items()
+    obj2.seperate_done_items()
+    return render_template('index.html', object_items=obj2)
+
+
+@app.route('/show_all/', methods=['GET'])
+def show_all():
+    return render_template('index.html', object_items=obj2)
 
 
 if __name__ == '__main__':

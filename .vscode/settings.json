@@ -1,3 +1,9 @@
 {
-    "python.pythonPath": "c:\\Users\\P10304269\\OneDrive - Capita\\Documents\\DevOps\\Mod4\\DevOps-Course-Starter\\env\\Scripts\\python.exe"
+    "python.pythonPath": "c:\\Users\\P10304269\\OneDrive - Capita\\Documents\\DevOps\\DevOps-Course-Starter\\env\\Scripts\\python.exe",
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestEnabled": true
 }
