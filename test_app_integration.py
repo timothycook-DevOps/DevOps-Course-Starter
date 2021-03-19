@@ -1,36 +1,44 @@
-from _pytest.monkeypatch import monkeypatch
 from dotenv import find_dotenv, load_dotenv
+from unittest.mock import Mock, patch
 import pytest
 import app as app
 import ApiAccess as api
-# from pytest import MonkeyPatch
 
 
 @pytest.fixture
 def client():
-    # Use our test integration config instead of the 'real' version.
+    # Use our test integration config instead of the 'real' version
     file_path = find_dotenv('.env.test')
     load_dotenv(file_path, override=True)
 
     # Create the new app.
     test_app = app.create_app()
-    api.AccessTrelloApi.get_json_data = mock_get_json_data
-    mock_get_json_data()
-    monkeypatch.setattr(api, 'get_json_data', mock_get_json_data)
-
-    # Use the app to create a test client that can be used in our tests.
+    # Use the app to create a test_client that can be used in our tests.
     with test_app.test_client() as client:
         yield client
 
 
-def mock_get_json_data():
-    return TODO_DATA
-
-
-def test_index_page(monkeypatch, client):
+@patch('requests.get')
+def test_index_page(mock_get_requests, client):
+    # Replace call to requests.get(url) with our own function
+    mock_get_requests.side_effect = mock_get_cards
     response = client.get('/')
-    monkeypatch.setattr(api, 'get_json_data', TODO_DATA)
-    assert response.status_code == 200
+
+
+def mock_get_cards(url, params):
+    if url == 'https://api.trello.com/1/lists/5f6f787bf9461c809f224d0d/cards/': # if url == f'https://api.trello.com/1/boards/{TEST_BOARD_ID}/lists':
+        response = Mock()
+        # sample_trello_lists_response should point to some test response data
+        response.json.return_value = TODO_DATA # sample_trello_lists_response
+        return response
+    return None
+
+
+def test_index_page(client):
+    response = client.get('/')
+    # assert response == 200
+    # assert b"Mop Floor" in response.data
+    
 
 
 TODO_DATA = """[
