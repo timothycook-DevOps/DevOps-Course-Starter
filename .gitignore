@@ -116,6 +116,9 @@ env/
 .env
 .WebDriver
 
+### Selenium Webdriver
+chromedriver.exe
+
 ### vagrant dir
 .vagrant
 
