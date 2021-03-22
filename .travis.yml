@@ -1,7 +1,5 @@
-# language: python
-#   - "3.9.1"
-# script:
-#   - pytest
+language: python
+  - "3.9.1"
 
 script:
   - echo "hello world"
