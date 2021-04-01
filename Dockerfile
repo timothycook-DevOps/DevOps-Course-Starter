@@ -61,3 +61,16 @@ ENV FLASK_ENV=development
 
 # Run flask for development
 CMD [ "run", "flask", "run", "-h", "0.0.0.0", "-p", "5000" ]
+
+# Testing environment
+FROM base as test
+
+RUN pip install pytest
+
+# Enable debugging for test environment
+ENV FLASK_ENV=development
+
+# ENTRYPOINT ["poetry", "run", "pytest"]
+ENTRYPOINT ["poetry", "run"]
+# ENTRYPOINT ["run", "poetry"]
+# CMD ["run", "poetry", "pytest", "test_View_Model_Unit.py"]
