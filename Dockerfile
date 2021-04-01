@@ -71,6 +71,6 @@ RUN pip install pytest
 ENV FLASK_ENV=development
 
 # ENTRYPOINT ["poetry", "run", "pytest"]
-ENTRYPOINT ["poetry", "run"]
+# CMD ["run"]
 # ENTRYPOINT ["run", "poetry"]
-# CMD ["run", "poetry", "pytest", "test_View_Model_Unit.py"]
+CMD ["run", "pytest", "test_View_Model_Unit.py"]

@@ -9,6 +9,6 @@ script:
   #- echo "hello world"
   - docker build --target test --tag todo-app:test .
   # todo run unit tests
-  - docker run -i -t -p 5000:5000 --env-file .dockEnv todo-app:test
+  - docker run -i -t -p 5000:5000 --env-file .dockEnv test-app:test
   # todo run integration tests
   # todo run system tests
