@@ -7,7 +7,7 @@ services:
 
 script:
   #- echo "hello world"
-  - docker build --target development --tag todo-app:dev .
+  - docker build --target test --tag todo-app:test .
   # todo run unit tests
   # docker run <options> my-test-image tests
   # todo run integration tests
