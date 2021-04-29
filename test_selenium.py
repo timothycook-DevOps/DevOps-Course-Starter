@@ -8,7 +8,7 @@ from selenium import webdriver
 @pytest.fixture(scope='module')
 def test_app():
     # Create the new board & update the board id environment variable
-    board_id = create_trello_board()
+    board_id = '5f6f7855bd60681aba0d6abd'
     os.environ['TRELLO_BOARD_ID'] = board_id
 
     # construct the new application
@@ -21,8 +21,8 @@ def test_app():
     yield app
 
     # tear down
-    thread.join(1)
-    delete_trello_board(board_id)
+    # thread.join(1)
+    # delete_trello_board(board_id)
 
 
 @pytest.fixture(scope='module')
