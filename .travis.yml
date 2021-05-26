@@ -13,3 +13,6 @@ script:
   - docker run -it test-app:test
   # todo run integration tests
   # todo run system tests
+
+after_success:
+  - docker login -u ${DOCKERUSER} -p ${DOCKERPASS}
