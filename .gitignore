@@ -115,6 +115,7 @@ env/
 ### Configuration files ###
 .env
 .WebDriver
+.env.template
 
 ### Selenium Webdriver
 chromedriver.exe
