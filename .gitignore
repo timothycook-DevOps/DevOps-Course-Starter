@@ -114,7 +114,13 @@ env/
 
 ### Configuration files ###
 .env
+.WebDriver
 
+### Selenium Webdriver
+chromedriver.exe
 
-### Keys file
-keys.py
+### vagrant dir
+.vagrant
+
+# docker config
+.dockEnv

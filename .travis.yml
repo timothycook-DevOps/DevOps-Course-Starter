@@ -1,0 +1,15 @@
+#language: python
+#  - "3.9.1"
+
+services:
+  - docker
+
+
+script:
+  #- echo "hello world"
+  - docker build --target test --tag test-app:test .
+  # todo run unit tests
+  # - docker run -i -t -p 5000:5000 --env-file .dockEnv test-app:test
+  - docker run -it test-app:test
+  # todo run integration tests
+  # todo run system tests
