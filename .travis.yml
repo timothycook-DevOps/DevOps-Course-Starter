@@ -19,3 +19,4 @@ script:
 
 after_success:
   - docker login -u ${DOCKERUSER} -p ${DOCKERPASS}
+  - docker push todo-app:prod
