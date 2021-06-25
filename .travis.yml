@@ -7,12 +7,15 @@ services:
 
 script:
   #- echo "hello world"
-  - docker build --target test --tag test-app:test .
+  # - docker build --target test --tag test-app:test .
+  - docker login -u ${DOCKERUSER} -p ${DOCKERPASS}
+  - docker build --target production --tag todo-app:prod .
+  - docker push todo-app:prod
   # todo run unit tests
   # - docker run -i -t -p 5000:5000 --env-file .dockEnv test-app:test
-  - docker run -it test-app:test
+  # - docker run -it test-app:test
   # todo run integration tests
   # todo run system tests
 
 after_success:
-  - docker login -u ${DOCKERUSER} -p ${DOCKERPASS}
+  # - docker login -u ${DOCKERUSER} -p ${DOCKERPASS}
